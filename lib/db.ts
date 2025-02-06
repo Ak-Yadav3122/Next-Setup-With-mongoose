@@ -1,4 +1,5 @@
-import { Mongoose } from "mongoose";
+import mongoose from "mongoose";
+
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
@@ -11,26 +12,33 @@ if (!MONGODB_URI) {
 
 let cached = global.mongoose;
 
-//we dont have mongoose connection so we need a connection
+//If we dont have mongoose connection so we need a connection
+
 if (!cached) {
-  //if no cached
+  //if no cached then create the new 
   cached = global.mongoose = {
     //make the cached and define their data
     conn: null,
     promise: null,
   };
 }
-//connect with database
-
+//connection  with database
 export async function connectToDatabase() {
+  // if database connection present
   if (cached.conn) {
     return cached.conn;
   }
+
+  // if database connection are not present in promise 
   if (!cached.promise) {
     const opts = {
       bufferCommands: true,
       maxPoolSize: 10, //define how many connection with the mongoDB at a same time
     };
-    cached.promise = mongoose.connect(MONGODB_URI,opts).then (()=>mongoose.coonection);
+    cached.promise = mongoose
+    .connect(MONGODB_URI,opts)
+    .then (()=>mongoose.connection);
   }
 }
+
+  // if one database connection are going but not coming due to async function 
