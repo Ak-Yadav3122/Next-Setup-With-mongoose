@@ -17,6 +17,8 @@ export interface Video {
     width: number;
     quality?: number;
   };
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 const videoSchema = new Schema<Video>(
