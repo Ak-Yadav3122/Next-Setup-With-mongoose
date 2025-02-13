@@ -5,7 +5,7 @@ export const VIDEO_DIMENSIONS = {
   height: 1920,
 } as const;
 
-export interface IVideo {
+export interface Video {
   _id?: mongoose.Types.ObjectId;
   title: string;
   description: string;
@@ -19,7 +19,7 @@ export interface IVideo {
   };
 }
 
-const videoSchema = new Schema<IVideo>(
+const videoSchema = new Schema<Video>(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -35,6 +35,6 @@ const videoSchema = new Schema<IVideo>(
   { timestamps: true }
 );
 
-const Video = models?.Video || model<IVideo>("Video", videoSchema);
+const Video = models?.Video || model<Video>("Video", videoSchema);
 
 export default Video;
