@@ -2,23 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import User from "@/models/User";
 
-// handle POST request
 export async function POST(request: NextRequest) {
   try {
-    //get email and password from the request body
-    const { username, email, password } = await request.json();
+    const { email, password } = await request.json();
 
-    if (!username) {
-      return NextResponse.json({ error: "username is required" });
-    }
     if (!email || !password) {
       return NextResponse.json(
-        { error: "Email and Password are required" },
+        { error: "Email and password are required" },
         { status: 400 }
       );
     }
 
-    await connectToDatabase(); //connect to the database
+    await connectToDatabase();
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -29,14 +24,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // If user does not exist ,create the new user
     await User.create({
-      username,
       email,
       password,
     });
 
-    // return the response
     return NextResponse.json(
       { message: "User registered successfully" },
       { status: 201 }

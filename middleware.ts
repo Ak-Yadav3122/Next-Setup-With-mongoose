@@ -8,7 +8,7 @@ export default withAuth(
   {
     callbacks: {
       authorized: ({ token, req }) => {
-        const { pathname } = req.nextUrl; //req.nextUrl it give the whole url
+        const { pathname } = req.nextUrl;
 
         // Allow auth-related routes
         if (
@@ -20,7 +20,6 @@ export default withAuth(
         }
 
         // Public routes
-
         if (pathname === "/" || pathname.startsWith("/api/videos")) {
           return true;
         }
@@ -31,16 +30,15 @@ export default withAuth(
   }
 );
 
-//// define config which tells at which place middleware runs
-export const config = { 
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|public/).*)",
-    /* where:-
+export const config = {
+  matcher: [
+    /*
      * Match all request paths except:
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - public folder
      */
-    
+    "/((?!_next/static|_next/image|favicon.ico|public/).*)",
   ],
 };
