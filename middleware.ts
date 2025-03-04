@@ -31,7 +31,8 @@ export default withAuth(
   }
 );
 
-export const config = { // it define at which place middleware runs
+//// define config which tells at which place middleware runs
+export const config = { 
   matcher: ["/((?!_next/static|_next/image|favicon.ico|public/).*)",
     /* where:-
      * Match all request paths except:
