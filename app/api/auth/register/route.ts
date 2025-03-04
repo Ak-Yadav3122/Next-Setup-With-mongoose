@@ -6,10 +6,10 @@ import User from "@/models/User";
 export async function POST(request: NextRequest) {
   try {
     //get email and password from the request body
-    const { fullname, email, password } = await request.json();
+    const { username, email, password } = await request.json();
 
-    if (!fullname) {
-      return NextResponse.json({ error: "Fullname is required" });
+    if (!username) {
+      return NextResponse.json({ error: "username is required" });
     }
     if (!email || !password) {
       return NextResponse.json(
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
     // If user does not exist ,create the new user
     await User.create({
-      fullname,
+      username,
       email,
       password,
     });
