@@ -46,7 +46,7 @@ export default function VideoUploadForm() {
 
   const onSubmit = async (data: VideoFormData) => {
     if (!data.videoUrl) {
-      showNotification("Please upload a video first", "error");
+      showNotification("Please upload your video first", "error");
       return;
     }
 
@@ -95,7 +95,7 @@ export default function VideoUploadForm() {
           className={`textarea textarea-bordered h-24 ${
             errors.description ? "textarea-error" : ""
           }`}
-          {...register("description", { required: "Description is required" })}
+          {...register("description", { required: "Description is must be required" })}
         />
         {errors.description && (
           <span className="text-error text-sm mt-1">
