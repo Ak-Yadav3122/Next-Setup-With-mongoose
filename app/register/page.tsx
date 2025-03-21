@@ -16,7 +16,7 @@ export default function Register() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      showNotification("Passwords do not match", "error");
+      showNotification("Passwords does not match", "error");
       return;
     }
 
@@ -33,7 +33,7 @@ export default function Register() {
         throw new Error(data.error || "Registration failed");
       }
 
-      showNotification("Registration successful! Please log in.", "success");
+      showNotification("Registration successfull! Please log in.", "success");
       router.push("/login");
     } catch (error) {
       showNotification(
