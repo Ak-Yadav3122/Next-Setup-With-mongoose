@@ -48,8 +48,8 @@ export default function FileUpload({
         setError("Please upload a valid video file");
         return false;
       }
-      if (file.size > 100 * 1024 * 1024) {
-        setError("Video size must be less than 100MB");
+      if (file.size > 150 * 1024 * 1024) {
+        setError("Video size must be less than 150MB");
         return false;
       }
     } else {
